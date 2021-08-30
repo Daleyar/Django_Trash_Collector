@@ -19,7 +19,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # First adding our custom routes from our accounts app's urls.py (for our custom registration)
+    # First adding our custom routes from our accounts app's urls.py (fo
     path('accounts/', include('accounts.urls')),
     # Then adding django's built in routes (login and logout). Notice there is no login function in accounts/views.py
     path('accounts/', include('django.contrib.auth.urls')),
