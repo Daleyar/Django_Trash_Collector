@@ -1,5 +1,7 @@
 from django.http import HttpResponse
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from .models import Customer
 # Create your views here.
 
@@ -21,3 +23,13 @@ def index(request):
 
     print(user)
     return render(request, 'customers/index.html')
+
+def create(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        user = request.user
+        new_cust = Customer(name=name, user=user)
+        new_cust.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        return render(request, 'customers/create.html')
