@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Schedule Pickup {% endblock %}
+
+{% block header %} Schedule Pickup  {% endblock %}
+
+{% block content %}
+
+<form action="" enctype="multipart/form-data" method="POST">
+    {% csrf_token %}  
+    {{ form|crispy }}
+    <input type="submit" name="submit" value="Submit">
+    </form>
+{% endblock %}
