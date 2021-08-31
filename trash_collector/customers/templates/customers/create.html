@@ -5,25 +5,14 @@
 {% block header %} Customer Create {% endblock %}
 
 {% block content %}
-<form action="" method="POST">
+<form action="{% url 'customers:create' %}" method="post">
     {% csrf_token %}  
-    {{ form.as_p }}
-    <input type="submit" name="submit" value="Submit">
-    </form>
-
-    <script>
-        $(function () {
-          $("#id_weekly_pickup_date").datepicker({
-              format:'mm-dd-yyyy',
-          });
-        });
-    </script>
-
-    <script>
-        $(function () {
-        $("#id_extra_pickup_date").datepicker({
-            format:'mm-dd-yyyy',
-        });
-        });
-    </script>
+    Name: <input type="text" name='name' id='name'><br />
+    Email: <input type="text" name='email' id='email'><br />
+    Street Address: <input type="text" name='street_address' id='street_address'><br />
+    City: <input type="text" name='city' id='city'><br />
+    State: <input type="text" name='state' id='state'><br />
+    Zip Code: <input type="text"name='zip_code' id='zip_code'><br />
+<input type="submit" value="Submit">
+</form>
 {% endblock %}

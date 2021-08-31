@@ -4,9 +4,10 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from .models import Customer
 # Create your views here.
-from django.urls import reverse_lazy, reverse
-from django.views import generic
-from .forms import CustomerForm
+#from django.urls import reverse_lazy, reverse
+#from django.views import generic
+#from .forms import CustomerForm
+#from .forms import SetPickupDate
 
 # TODO: Create a function for each path created in customers/urls.py. Each will need a template as well.
 
@@ -31,7 +32,13 @@ def create(request):
     if request.method == "POST":
         name = request.POST.get('name')
         user = request.user
-        new_cust = Customer(name=name, user=user)
+        email = request.POST.get('email')
+        city = request.POST.get('city')
+        street_address = request.POST.get('street_address')
+        state = request.POST.get('state')
+        zip_code =request.POST.get('zip_code')
+        new_cust = Customer(name=name, user=user, email=email, street_address=street_address, 
+        city=city, state=state, zip_code=zip_code)
         new_cust.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
@@ -39,18 +46,4 @@ def create(request):
 
 
 
-#def pickup(request):
-    #user = request.user
-    #logged_in_customer = Customer.objects.get(user=user)
 
-class ProfileView(generic.CreateView):
-    form_class = CustomerForm
-    success_url = reverse_lazy('home')
-    template_name = 'customers/create.html'
-
-class ProfileDetail(generic.DetailView):
-    template_name = 'customers/detail.html'
-
-    def get_object(self):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(Customer,id=id_)
