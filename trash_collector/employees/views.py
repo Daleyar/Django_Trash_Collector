@@ -9,8 +9,16 @@ from .models import Employee
 
 # TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
 
-
 def index(request):
+    user = request.user
+    try:
+        logged_in_employee = Employee.objects.get(user=user)
+    except Employee.DoesNotExist:
+        return HttpResponseRedirect(reverse('employees:create'))
+    print(user)
+    return render(request, 'employees/index.html')
+
+def indexquery(request):
     # This line will get the Customer model from the other app, it can now be used to query the db for Customers
     Customer = apps.get_model('customers.Customer')
     return render(request, 'employees/index.html')
@@ -31,3 +39,6 @@ def create(request):
         return HttpResponseRedirect(reverse('employees:index'))
     else:
         return render(request, 'employees/create.html')
+
+def table(request):
+    return render(request, 'employees/daily_view.html')

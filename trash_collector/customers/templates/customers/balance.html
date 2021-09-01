@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %} Suspend Account {% endblock %}
+{% block title %} Customer Balance {% endblock %}
 
-{% block header %} Suspend Account {% endblock %}
+{% block header %} Customer Balance {% endblock %}
 
 {% block content %}
 <form action="{% url 'customers:balance' %}">
         {% csrf_token %}
-
-    <input type="Submit">
+        <h2>Current balance: ${{logged_in_customer.current_balance}}</h2>
 </form>
 {% endblock %}
