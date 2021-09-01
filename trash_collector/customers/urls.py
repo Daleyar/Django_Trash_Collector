@@ -7,4 +7,6 @@ app_name = "customers"
 urlpatterns = [
     path('', views.index, name="index"),
     path('new/', views.create, name='create'),
+    path('pickup/', views.edit, name='edit'),
+    path('detail/', views.detail, name='detail')
 ]

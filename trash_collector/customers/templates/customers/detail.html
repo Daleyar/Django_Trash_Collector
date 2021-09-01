@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %} Customer Details {% endblock %}
+{% block title %} Account Info {% endblock %}
 
-{% block header %} Customer Details {% endblock %}
+{% block header %} Account Info {% endblock %}
 
 {% block content %}
-
+<ul>
+<h2>{{logged_in_customer.name}}</h2>
+<li><h3>Email: {{logged_in_customer.email}}</h3></li>
+<li><h3>Street Address: {{logged_in_customer.street_address}}</h3></li>
+<li><h3>City: {{logged_in_customer.city}}</h3></li>
+<li><h3>State: {{logged_in_customer.state}}</h3></li>
+<li><h3>Zip Code: {{logged_in_customer.zip_code}}</h3></li>
+<li><h3>Weekly Pickup Date: {{logged_in_customer.weekly_pickup_date}}</h3></li>
+<li><h3>Extra Pickup Date (optional): {{logged_in_customer.extra_pickup_date}}</h3></li>
+</ul>
 {% endblock %}

@@ -1,31 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %} Schedule Pickup {% endblock %}
+{% block title %} Change Pickup Day {% endblock %}
 
-{% block header %} Schedule Pickup  {% endblock %}
+{% block header %} Change Pickup Day {% endblock %}
 
 {% block content %}
-
-<form action="" method="POST">
+<form action="{% url 'customers:edit' %}" method="post"> 
     {% csrf_token %}  
-    {{ form.as_p }}
-    <input type="submit" name="submit" value="Submit">
-    </form>
-
-<script>
-    $(function () {
-    $("#id_weekly_pickup_date").datepicker({
-        format:'mm-dd-yyyy',
-    });
-    });
- </script>
-
-<script>
-    $(function () {
-    $("#id_extra_pickup_date").datepicker({
-        format:'mm-dd-yyyy',
-    });
-    });
-</script>
-
+    Change Weekly Pickup Date: <input type="date" name='weekly_pickup_date' id='weekly_pickup_date'><br />
+    Select or Change Extra Pickup Date (optional): <input type="date" name='extra_pickup_date' id='extra_pickup_date'><br />
+<input type="submit" value="Confirm"><br />
+<a class="btn btn-sm btn-danger" href="{% url 'customers:index' %}">Exit</a>
+</form>
 {% endblock %}
