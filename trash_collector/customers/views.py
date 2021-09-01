@@ -38,8 +38,8 @@ def create(request):
         zip_code = request.POST.get('zip_code')
         weekly_pickup_date = request.POST.get('weekly_pickup_date')
         extra_pickup_date = request.POST.get('extra_pickup_date')
-        new_cust = Customer(name=name, user=user, email=email, street_address=street_address, 
-        city=city, state=state, zip_code=zip_code, weekly_pickup_date=weekly_pickup_date, 
+        new_cust = Customer(name=name, user=user, email=email, street_address=street_address,
+        city=city, state=state, zip_code=zip_code, weekly_pickup_date=weekly_pickup_date,
         extra_pickup_date=extra_pickup_date
         )
         new_cust.save()
@@ -74,3 +74,22 @@ def detail(request):
         'logged_in_customer':logged_in_customer
     }
     return render(request, 'customers/detail.html', context)
+
+
+def balance(request):
+    user = request.user
+    logged_in_customer = Customer.objects.get(user=user)
+    return render(request, 'customers/balance.html')
+
+
+def suspend(request):
+    user = request.user
+    logged_in_customer = Customer.objects.get(user=user)
+
+    if request.method == "POST":
+        logged_in_customer.start_suspension = request.POST.get("start_suspension")
+        logged_in_customer.end_suspension = request.POST.get("end_suspension")
+        logged_in_customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        return render(request, 'customers/suspend.html')
