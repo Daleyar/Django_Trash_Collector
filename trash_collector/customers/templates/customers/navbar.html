@@ -25,8 +25,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{% url 'customers:detail' %}">Account Info</a>
-          <a class="dropdown-item" href="#">Suspend Pickups</a>
-          <a class="dropdown-item" href="#">Current Balance</a>
+          <a class="dropdown-item" href="{% url 'customers:suspend' %}">Suspend Pickups</a>
+          <a class="dropdown-item" href="{% url 'customers:balance' %}">Current Balance</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
         </div>
