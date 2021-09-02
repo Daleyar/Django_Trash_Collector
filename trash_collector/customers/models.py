@@ -11,7 +11,7 @@ class Customer(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
     zip_code = models.CharField(max_length=5) 
-    current_balance = models.DecimalField(default=0, max_digits=6, decimal_places=2)
+    current_balance = models.FloatField(default=0)
     weekly_pickup_date = models.DateField(null=True, blank=True)
     extra_pickup_date = models.DateField(null=True, blank=True)
     start_suspension = models.DateField(null=True, blank=True) 

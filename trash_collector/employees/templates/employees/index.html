@@ -1,13 +1,58 @@
 {% extends 'base.html' %}
 
-{% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
+{% block title %} Employee Home {% endblock %}
+{% block header %}<h1> Employee Home </h1>{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!
+<div class="container" style="text-align: center">
+  <H1>Hello Employee {{ user.username }}!</H1>
+          <br>
+          <div class="row">
+              <div div class="col-md">
+                  <h5 style="text-align: center;">Customers</h5>
+                  <hr>
+                  <div class="card card-body">
+                      <table class="table table-sm">
+                          <thead class="thead-dark">
+                          <tr>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Steet Address</th>
+                              <th>City</th>
+                              <th>State</th>
+                              <th>Zip Code</th>
+                              <th>Weekly Pickup Date</th>
+                              <th>Balance</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          {% for customer in pickup_customers %}
+                          <tr>
+                              <td>{{ customer.name }}</td>
+                              <td>{{ customer.email }}</td>
+                              <td>{{ customer.street_address }}</td>
+                              <td>{{ customer.city }}</td>
+                              <td>{{ customer.state }}</td>
+                              <td>{{ customer.zip_code }}</td>
+                              <td>{{ customer.weekly_pickup_date }}</td>
+                              <td>${{ customer.current_balance }}</td>
+                          </tr>
+                          {% endfor %}
+                          </form>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
+
 {% endblock %}

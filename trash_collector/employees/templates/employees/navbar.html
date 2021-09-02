@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
-    <img width="50px" height="50px"src="{% static 'customers/logo.png' %}" alt="logo">
+    <img width="75px" height="60px"src="{% static 'images/trash.png' %}" alt="logo">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -14,19 +14,13 @@
         <a class="nav-link" href="{% url 'employees:index' %}">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">hold</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">hold</a>
+        <a class="nav-link" href="{% url 'employees:daily_view' %}">Daily View</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">hold</a>
-          <a class="dropdown-item" href="#">hold</a>
-          <a class="dropdown-item" href="#">hold</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
         </div>
