@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Pickups</h1>
+  {% if pickup_customers %}
+  <ul>
+    {% for picks in pickup_customers %}
+
+      <li>
+        <a href="{{ employees.pickups }}">{{ picks.name }} {{ picks.street_address }} {{ picks.city }} {{ picks.state }} {{ picks.zip_code }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no pickups today.</p>
+  {% endif %}
+{% endblock %}

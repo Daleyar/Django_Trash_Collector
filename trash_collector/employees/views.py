@@ -32,7 +32,7 @@ def create(request):
         street_address = request.POST.get('street_address')
         state = request.POST.get('state')
         zip_code = request.POST.get('zip_code')
-        new_employee = Employee(name=name, user=user, email=email, street_address=street_address, 
+        new_employee = Employee(name=name, user=user, email=email, street_address=street_address,
         city=city, state=state, zip_code=zip_code
         )
         new_employee.save()
@@ -42,3 +42,20 @@ def create(request):
 
 def table(request):
     return render(request, 'employees/daily_view.html')
+
+def pickups(request):
+    user = request.user
+    logged_in_employee = Employee.objects.get(user=user)
+    zip_match = logged_in_employee.zip_code
+
+    Customer = apps.get_model("customers.Customer")
+    pickup_customers = Customer.objects.filter(zip_code = zip_match)
+    context = {
+            "pickup_customers": pickup_customers
+        }
+    if request.method == "POST":
+        Customer.current_balance = request.POST.get(5)
+        Customer.save()
+        return HttpResponseRedirect(reverse('employees:index'))
+    else:
+        return render(request, 'employees/daily_view.html', context)

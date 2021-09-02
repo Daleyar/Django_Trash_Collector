@@ -6,29 +6,45 @@
 
 {% block content %}
 <br>
-<div class="container">
-    <div class="row">
-        <div div class="col-md">
-            <h5 style="text-align: center;">Customers</h5>
-            <hr>
-            <div class="card card-body">
-                <a class="btn btn-primary  btn-sm btn-block" href="">Filter</a>
-                <table class="table table-sm">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Steet Address</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Zip Code</th>
-                        <th>Weekly Pickup Date</th>
-                        <th>Confirm Pickup</th>
-                    </tr>
-                    </thead>
-                </table>
+<form action="{% url 'employees:pickups' %}" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div div class="col-md">
+                <h5 style="text-align: center;">Customers</h5>
+                <hr>
+                <div class="card card-body">
+                    <a class="btn btn-primary  btn-sm btn-block" href="">Filter</a>
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Steet Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Zip Code</th>
+                            <th>Weekly Pickup Date</th>
+                            <th>Confirm Pickup</th>
+                        </tr>
+                        <tr>
+                            {% for customer in pickup_customers %}
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.street_address }}</td>
+                            <td>{{ customer.city }}</td>
+                            <td>{{ customer.state }}</td>
+                            <td>{{ customer.zip_code }}</td>
+                            <td>{{ customer.weekly_pickup_date }}</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        {% endfor %}
+                        </thead>
+                    </table>
+                    <input type="submit"></button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 {% endblock %}
